@@ -205,7 +205,6 @@ O ***MVC*** é um padrão de arquitetura de software que separa a aplicação em
 
 * **Renne Dias** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
 * **Josienson Dasmaceno** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Naylan Sanches** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
 * **Paulo Rafael** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
 * **Vinicios Prestes** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
 * **Eric Alves** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)

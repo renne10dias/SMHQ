@@ -31,6 +31,8 @@ export class ReservationService implements ReservationServiceInterface {
         
         try {
 
+
+            /*
             const isValid = await this.repository.isReservationWithinOpeningHours(reservation.sportsCoutUuid, reservation.initHour, reservation.endHour);
 
             if (!isValid) { 
@@ -38,6 +40,7 @@ export class ReservationService implements ReservationServiceInterface {
                     httpCode: 203
                 };
             } 
+                */
 
 
 
@@ -86,6 +89,7 @@ export class ReservationService implements ReservationServiceInterface {
         
         try {
 
+            /*
             const isValid = await this.repository.isReservationWithinOpeningHours(reservation.sportsCoutUuid, reservation.initHour, reservation.endHour);
 
             if (!isValid) { 
@@ -93,6 +97,8 @@ export class ReservationService implements ReservationServiceInterface {
                     httpCode: 203
                 };
             } 
+
+            */
 
             const isTaken = await this.repository.isTimeSlotTaken(reservation.initHour, reservation.endHour, reservation.sportsCoutUuid);
 

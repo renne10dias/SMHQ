@@ -79,7 +79,7 @@ export class ReservationController {
                 case 201:
                     return response.status(201).json({ message: "Reserva criada com sucesso." });
                 case 203:
-                    return response.status(201).json({ message: "Esta quadra não está funcionando para esse horário." });
+                    return response.status(203).json({ message: "Esta quadra não está funcionando para esse horário." });
                 case 409:
                     return response.status(409).json({ message: "Email já cadastrado." });
                 case 401:
@@ -150,7 +150,7 @@ export class ReservationController {
                 case 201:
                     return response.status(201).json({ message: "Reserva criada com sucesso." });
                 case 203:
-                    return response.status(201).json({ message: "Esta quadra não está funcionando para esse horário." });
+                    return response.status(203).json({ message: "Esta quadra não está funcionando para esse horário." });
                 case 409:
                     return response.status(409).json({ message: "Email já cadastrado." });
                 case 401:

@@ -119,35 +119,35 @@ export class ReservationRepository implements ReservationRepositoryInterface {
   }
 
 
-  public async isReservationWithinOpeningHours(sportsCoutUuid: string, initHour: Date, endHour: Date): Promise<boolean> {
-    try {
-        // Busca o horário de abertura e fechamento do `sports_cout`
-        const sportsCout = await this.prisma.sportsCout.findUnique({
-            where: { uuid: sportsCoutUuid },
-            select: {
-                opening: true,
-                closest: true,
-            },
-        });
+    public async isReservationWithinOpeningHours(sportsCoutUuid: string, initHour: Date, endHour: Date): Promise<boolean> {
+        try {
+            // Busca o horário de abertura e fechamento do `sports_cout`
+            const sportsCout = await this.prisma.sportsCout.findUnique({
+                where: { uuid: sportsCoutUuid },
+                select: {
+                    opening: true,
+                    closest: true,
+                },
+            });
 
-        // Se o `sports_cout` não existir, lança um erro
-        if (!sportsCout) {
-            throw new Error(`SportsCout with UUID ${sportsCoutUuid} not found.`);
+            // Se o `sports_cout` não existir, lança um erro
+            if (!sportsCout) {
+                throw new Error(`SportsCout with UUID ${sportsCoutUuid} not found.`);
+            }
+
+            // Converte os horários de abertura e fechamento para objetos `Date`
+            const openingHour = new Date(sportsCout.opening);
+            const closingHour = new Date(sportsCout.closest);
+
+            // Verifica se o horário de início e término estão dentro do intervalo permitido
+            const isValid = initHour >= openingHour && endHour <= closingHour;
+
+            return isValid;
+        } catch (error) {
+            console.error('Error while validating reservation time:', error);
+            throw new Error('Failed to validate reservation time.');
         }
-
-        // Converte os horários de abertura e fechamento para objetos `Date`
-        const openingHour = new Date(sportsCout.opening);
-        const closingHour = new Date(sportsCout.closest);
-
-        // Verifica se o horário de início e término estão dentro do intervalo permitido
-        const isValid = initHour >= openingHour && endHour <= closingHour;
-
-        return isValid;
-    } catch (error) {
-        console.error('Error while validating reservation time:', error);
-        throw new Error('Failed to validate reservation time.');
     }
-}
 
   
   
