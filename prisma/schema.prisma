@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uuid      String      @id @default(uuid()) @map("uuid")
+  name      String      @map("name")
+  email     String      @unique @map("email")
+  password  String      @map("password")
+  createdAt DateTime    @map("createdAt")
+  districts District[]
+
+  @@map("user")
+}
+
+model District {
+  uuid      String      @id @default(uuid()) @map("uuid")
+  name      String      @map("name")
+  userUuid  String      @map("user_uuid")
+  user      User        @relation(fields: [userUuid], references: [uuid])
+  sportsCouts SportsCout[]
+
+  @@index([userUuid], map: "fk_district_user1_idx")
+  @@map("district")
+}
+
+model Responsible {
+  uuid        String                     @id @default(uuid()) @map("uuid")
+  name        String                     @map("name")
+  address     String?                    @map("address")
+  phone       String?                    @map("phone")
+  email       String?                    @map("email")
+  sportsCouts SportsCoutHasResponsible[]
+
+  @@map("responsible")
+}
+
+model SportsCout {
+  uuid          String                     @id @default(uuid()) @map("uuid")
+  name          String                     @map("name")
+  opening       DateTime                   @map("opening")
+  closest       DateTime                   @map("closest")
+  districtUuid  String                     @map("district_uuid")
+  district      District                   @relation(fields: [districtUuid], references: [uuid])
+  responsibilities SportsCoutHasResponsible[]
+
+  @@index([districtUuid], map: "fk_sports_cout_district1_idx")
+  @@map("sports_cout")
+}
+
+model SportsCoutHasResponsible {
+  uuid            String        @default(uuid()) @map("uuid")
+  sportsCoutUuid  String        @map("sports_cout_uuid")
+  responsibleUuid String        @map("responsible_uuid")
+  initHour        DateTime      @map("init_hour")
+  endHour         DateTime      @map("end_hour")
+  enabled         Boolean       @map("enabled")
+  observations    String?       @map("observations")
+  sportsCout      SportsCout    @relation(fields: [sportsCoutUuid], references: [uuid])
+  responsible     Responsible   @relation(fields: [responsibleUuid], references: [uuid])
+
+  @@id([uuid, sportsCoutUuid, responsibleUuid])
+  @@index([responsibleUuid], map: "fk_sports_cout_has_responsible_responsible1_idx")
+  @@map("sports_cout_has_responsible")
+}
