@@ -185,18 +185,6 @@ de software. Eles definem uma linguagem
 comum que ajuda sua equipe a se
 comunicar mais eficientemente.
 
-## SOLID
-O acrônimo ***SOLID*** é um conjunto de princípios de design de código que visam facilitar a manutenção e a evolução do software. Ele foi introduzido por Robert C. Martin em 2000 e é composto por cinco princípios:
-
-- **S** - Single Responsibility Principle (Princípio da Responsabilidade Única)
-
-
-- **O** - Open/Closed Principle (Princípio do Aberto/Fechado)
-- **L** - Liskov Substitution Principle (Princípio da Substituição de Liskov)
-- **I** - Interface Segregation Principle (Princípio da Segregação de Interfaces)
-- **D** - Dependency Inversion Principle (Princípio da Inversão de Dependências)
-
-  ![solid](https://github.com/doutorwaka/classical-mvc-solid/assets/107580593/221025cc-4531-4721-a715-2944f8067d0b)
 
 ## MVC
 
